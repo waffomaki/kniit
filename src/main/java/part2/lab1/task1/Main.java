@@ -8,7 +8,7 @@ public class Main {
         GasStation station = new GasStation();
         List<Thread> cars = new ArrayList<>();
 
-        int n = 15;
+        int n = Constants.TOTAL_CARS;
         for (int i=1; i<=n; i++) {
             Thread car = new Thread(new Car(i, station));
             cars.add(car);

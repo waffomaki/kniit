@@ -13,7 +13,7 @@ public class Car implements Runnable {
     public void run() {
         try {
             station.fuel(id);
-            Thread.sleep(1000);
+            Thread.sleep(Constants.FUEL_TIME_MS);
             station.release(id);
         } catch (InterruptedException e) {
             return;

@@ -1,4 +1,8 @@
-package part2.lab1.task5;
+package part2.lab1.task5.workers;
+
+import part2.lab1.task5.Conveyor;
+import part2.lab1.task5.Part;
+import part2.lab1.task5.core.PartStage;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,8 +25,10 @@ public class WarehouseWorker implements Runnable {
             while (receivedParts.get() < expectedParts) {
                 Part part = inputQueue.take();
 
+                part.setStage(PartStage.IN_WAREHOUSE);
+
                 int count = receivedParts.incrementAndGet();
-                System.out.println(">>> СКЛАД: Принята " + part + " (всего: " + count + "/" + expectedParts + ")");
+                System.out.println("[Склад] Принята: " + part + " (всего: " + count + "/" + expectedParts + ")");
 
                 if (count >= expectedParts) {
                     break;
@@ -32,6 +38,6 @@ public class WarehouseWorker implements Runnable {
             Thread.currentThread().interrupt();
         }
 
-        System.out.println("\n=== Все детали приняты на склад ===");
+        System.out.println("\n[Склад] Все детали приняты");
     }
 }

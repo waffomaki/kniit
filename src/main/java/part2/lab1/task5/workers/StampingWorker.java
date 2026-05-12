@@ -1,4 +1,9 @@
-package part2.lab1.task5;
+package part2.lab1.task5.workers;
+
+import part2.lab1.task5.Conveyor;
+import part2.lab1.task5.Part;
+import part2.lab1.task5.core.Constants;
+import part2.lab1.task5.core.PartStage;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -17,10 +22,9 @@ public class StampingWorker implements Runnable {
         try {
             for (int i = 1; i <= partsToProduce; i++) {
                 Part part = new Part(i);
-                part.setStage("Заготовка");
 
                 queue.put(part);
-                System.out.println("Штамповщик создал: " + part);
+                System.out.println("[Штамповщик] Создал: " + part);
 
                 Thread.sleep(Constants.STAMPER_DELAY_MS);
             }

@@ -1,4 +1,9 @@
-package part2.lab1.task5;
+package part2.lab1.task5.workers;
+
+import part2.lab1.task5.Conveyor;
+import part2.lab1.task5.Part;
+import part2.lab1.task5.core.Constants;
+import part2.lab1.task5.core.PartStage;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -18,8 +23,8 @@ public class AssemblyWorker implements Runnable {
             while (true) {
                 Part part = inputQueue.take();
 
-                part.setStage("Собрана");
-                System.out.println("Сборщик обработал: " + part);
+                part.setStage(PartStage.ASSEMBLED);
+                System.out.println("[Сборщик] Обработал: " + part);
 
                 outputQueue.put(part);
 

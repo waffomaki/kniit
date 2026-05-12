@@ -1,4 +1,4 @@
-package part2.lab1.task5;
+package part2.lab1.task5.core;
 
 public final class Constants {
     public static final int TOTAL_PARTS = 10;

@@ -1,4 +1,9 @@
-package part2.lab1.task5;
+package part2.lab1.task5.workers;
+
+import part2.lab1.task5.Conveyor;
+import part2.lab1.task5.Part;
+import part2.lab1.task5.core.Constants;
+import part2.lab1.task5.core.PartStage;
 
 import java.util.concurrent.BlockingQueue;
 
@@ -18,8 +23,8 @@ public class QualityControlWorker implements Runnable {
             while (true) {
                 Part part = inputQueue.take();
 
-                part.setStage("Проверена ОК");
-                System.out.println("Контроль качества: " + part);
+                part.setStage(PartStage.QC_PASSED);
+                System.out.println("[Оператор контроля качества]: " + part);
 
                 outputQueue.put(part);
 

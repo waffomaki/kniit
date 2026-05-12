@@ -1,9 +1,9 @@
 package part2.lab2.adapter;
 
-public class AmericanChargeAdapter implements EuropeanPlug {
+public class AmericanChargerAdapter implements EuropeanPlug {
     private AmericanCharger charger;
 
-    public AmericanChargeAdapter(AmericanCharger charger) {
+    public AmericanChargerAdapter(AmericanCharger charger) {
         this.charger = charger;
     }
 

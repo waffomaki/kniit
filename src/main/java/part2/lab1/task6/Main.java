@@ -19,5 +19,13 @@ public class Main {
             executor.submit(new Runner(i, barrier));
         }
         executor.shutdown();
+
+        try {
+            long timeoutSec = (Constants.MAX_RUN_TIME_MS / 1000) + 1;
+            executor.awaitTermination(timeoutSec, TimeUnit.SECONDS);
+            System.out.println("\nГонка завершена!");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

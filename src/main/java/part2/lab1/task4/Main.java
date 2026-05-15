@@ -1,5 +1,8 @@
 package part2.lab1.task4;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         TrafficLight trafficLight = TrafficLight.getInstance();
@@ -8,8 +11,10 @@ public class Main {
         Thread controllerThread = new Thread(controller);
         controllerThread.start();
 
+        List<Thread> carThreads = new ArrayList<>();
         for (int i = 1; i <= Constants.NUM_CARS; i++) {
             Thread carThread = new Thread(new Car(i, trafficLight));
+            carThreads.add(carThread);
             carThread.start();
 
             try {
@@ -19,10 +24,12 @@ public class Main {
             }
         }
 
-        try {
-            Thread.sleep(Constants.SWITCH_INTERVAL_MS * 4);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+        for (Thread carThread : carThreads) {
+            try {
+                carThread.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
 
         controller.stop();

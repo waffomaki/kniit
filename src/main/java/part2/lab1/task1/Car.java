@@ -16,7 +16,7 @@ public class Car implements Runnable {
             Thread.sleep(Constants.FUEL_TIME_MS);
             station.release(id);
         } catch (InterruptedException e) {
-            return;
+            Thread.currentThread().interrupt();
         }
     }
 }
